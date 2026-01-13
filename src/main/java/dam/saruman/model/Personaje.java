@@ -26,7 +26,7 @@ public class Personaje {
     private LocalDate fecha_aparicion;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "raza_id")
+    @JoinColumn(name = "raza_id", nullable = false)
     private Raza raza;
 
     // Constructores

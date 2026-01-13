@@ -24,6 +24,7 @@
         <property name="hibernate.connection.pool_size">10</property>
 
         <!-- Mapeo de clases || Cambiar por vuestro paquete-->
-        <mapping class="org.hlanz.model.Enemigo"/>
+        <mapping class="dam.saruman.model.Raza"/>
+        <mapping class="dam.saruman.model.Personaje"/>
     </session-factory>
 </hibernate-configuration>

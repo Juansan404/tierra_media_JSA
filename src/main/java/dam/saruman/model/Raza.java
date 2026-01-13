@@ -23,7 +23,7 @@ public class Raza {
     @Column(name = "esperanza_vida")
     private Integer esperanza_vida;
 
-    @OneToMany(mappedBy = "raza", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "raza", cascade = CascadeType.ALL)
     private List<Personaje> personajes = new ArrayList<>();
 
     // Constructores
