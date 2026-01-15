@@ -33,12 +33,13 @@ public class Personaje {
     public Personaje() {
     }
 
-    public Personaje(String nombre, Integer edad, String arma_principal, Double nivel_poder, LocalDate fecha_aparicion) {
+    public Personaje(String nombre, Integer edad, String arma_principal, Double nivel_poder, LocalDate fecha_aparicion, Raza raza) {
         this.nombre = nombre;
         this.edad = edad;
         this.arma_principal = arma_principal;
         this.nivel_poder = nivel_poder;
         this.fecha_aparicion = fecha_aparicion;
+        this.raza = raza;
     }
 
     // Getters y Setters

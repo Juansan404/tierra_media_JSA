@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(del \"\\\\?\\\\C:\\\\Users\\\\User\\\\Desktop\\\\FPDAM\\\\SEGUNDO CURSO\\\\ACCESOADATOS\\\\tierra_media_hibernate\\\\nul\")",
+      "Bash(git add:*)"
+    ]
+  }
+}

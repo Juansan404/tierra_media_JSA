@@ -26,7 +26,10 @@ public class PersonajeDAO {
 
     public Personaje obtenerPorId(Long id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.find(Personaje.class, id);
+            Query<Personaje> query = session.createQuery(
+                "FROM Personaje p JOIN FETCH p.raza WHERE p.id = :id", Personaje.class);
+            query.setParameter("id", id);
+            return query.uniqueResult();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -35,7 +38,7 @@ public class PersonajeDAO {
 
     public List<Personaje> obtenerTodos() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("FROM Personaje", Personaje.class).list();
+            return session.createQuery("FROM Personaje p JOIN FETCH p.raza", Personaje.class).list();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -76,7 +79,7 @@ public class PersonajeDAO {
     public List<Personaje> buscarPorRaza(Long razaId) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query<Personaje> query = session.createQuery(
-                "FROM Personaje p WHERE p.raza.id = :razaId", Personaje.class);
+                "FROM Personaje p JOIN FETCH p.raza WHERE p.raza.id = :razaId", Personaje.class);
             query.setParameter("razaId", razaId);
             return query.list();
         } catch (Exception e) {
@@ -88,7 +91,7 @@ public class PersonajeDAO {
     public List<Personaje> buscarPorRangoNivelPoder(Double min, Double max) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query<Personaje> query = session.createQuery(
-                "FROM Personaje p WHERE p.nivel_poder BETWEEN :min AND :max", Personaje.class);
+                "FROM Personaje p JOIN FETCH p.raza WHERE p.nivel_poder BETWEEN :min AND :max", Personaje.class);
             query.setParameter("min", min);
             query.setParameter("max", max);
             return query.list();
@@ -101,7 +104,7 @@ public class PersonajeDAO {
     public List<Personaje> buscarPorArma(String arma) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query<Personaje> query = session.createQuery(
-                "FROM Personaje p WHERE p.arma_principal = :arma", Personaje.class);
+                "FROM Personaje p JOIN FETCH p.raza WHERE p.arma_principal = :arma", Personaje.class);
             query.setParameter("arma", arma);
             return query.list();
         } catch (Exception e) {
@@ -113,7 +116,7 @@ public class PersonajeDAO {
     public List<Personaje> obtenerMasPoderosos(int limite) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query<Personaje> query = session.createQuery(
-                "FROM Personaje p ORDER BY p.nivel_poder DESC", Personaje.class);
+                "FROM Personaje p JOIN FETCH p.raza ORDER BY p.nivel_poder DESC", Personaje.class);
             query.setMaxResults(limite);
             return query.list();
         } catch (Exception e) {
